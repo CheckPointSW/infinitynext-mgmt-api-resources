@@ -2,9 +2,8 @@
 
 ## Overview
 
-This repository will contain documents for the usage of Check Point Infinity Next applications in portal.checkpoint.com.
-The applications can be found under INFINITY-VISION->Policy or CLOUDGUARD->Application Security.
-Through Web or API it is possible to manage all security capabilities Check Point is providing through the Infinity Next platform.
+Resources and example for using Check Point Infinity Next API.
+For API reference and GraphiQL tool, login into the product and navigate to Support->API
 
 ## Content
 
