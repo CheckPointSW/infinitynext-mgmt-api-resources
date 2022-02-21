@@ -1,4 +1,4 @@
-# chkp_infinitynext_mgmt_api_docs
+# chkp_infinitynext_mgmt_api_resources
 
 ## Overview
 
