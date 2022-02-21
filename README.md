@@ -1,4 +1,4 @@
-# chkp_infinitynext_mgmt_api_resources
+# Check Point Infinity Next Management API Resources
 
 ## Overview
 
