@@ -7,6 +7,7 @@ from mgmt_api import cloudInfra_connect
 import traceback
 import sched
 import time
+import base64
 import mgmt_api
 scheduler = sched.scheduler(time.time, time.sleep)
 from mgmt_api_helper_functions import *
@@ -36,10 +37,9 @@ def main():
         })
 
         profile_name = "{} {}".format('Profile', generate_random_hex())
-        profile_id = mgmt_api.create_reusable_token_profile({
+        profile_id = mgmt_api.create_docker_profile({
             "name": profile_name,
-            "subType": "Aws",
-            "onlyDefinedAssets": True
+            "onlyDefinedApplications": True
         })
         print("Creating Web API Asset and components\n")
 
@@ -61,9 +61,15 @@ def main():
             }
         ]
         practice_name = "{} {}".format("ACME Web API Practice", generate_full_random_hex())
+        file = open("D:\git\\test-mgmt-versions-api\OpenAPISchema.yml", "r")
+        file_content = file.read()
+        message_bytes = file_content.encode('ascii')
+        base64_bytes = base64.b64encode(message_bytes)
+        header64 = "OpenAPISchema.yml;$$:$$;data:application/octet-stream;base64," + base64_bytes.decode('ascii')
         web_api_practice_id = mgmt_api.create_web_api_practice(modes, {
             "name": practice_name,
-            "visibility": "Shared"
+            "visibility": "Shared",
+            "SchemaValidation": {"OasSchema": header64}
         })
 
         web_api_practice_obj = {
