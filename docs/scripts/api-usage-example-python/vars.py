@@ -11,9 +11,9 @@ from ast import literal_eval
 # prod
 CLIENT_ID = ""
 SECRET_KEY = ""
+region = "US"# US or EU
 
-
-CLOUD_INFRA_HOST = "https://cloudinfra-gw.portal.checkpoint.com"
+CLOUD_INFRA_HOST = "https://cloudinfra-gw-us.portal.checkpoint.com" if region == 'US' else "https://cloudinfra-gw.portal.checkpoint.com"
 APP_PATH = "/app/i2"
 
 AUTH_PATH = "/auth/external"
@@ -48,18 +48,17 @@ SLEEP_AFTER_CHECK_ENFORCE_STATUS = 10
 
 # ----------PROFILES mutations----------
 
-CREATE_REUSABLE_TOKEN_PROFILE_MUTATION = """mutation newReusableTokenProfile($profileInput: ReusableTokenProfileInput){
-                           newReusableTokenProfile(profileInput: $profileInput){
+CREATE_DOCKER_PROFILE_MUTATION = """mutation newDockerProfile($profileInput: DockerProfileInput){
+                           newDockerProfile(profileInput: $profileInput){
                              id
                              name
-                             token
                          }
                          }"""
 
-CREATE_REUSABLE_TOKEN_PROFILE_MUTATION_NAME = "newReusableTokenProfile"
+CREATE_DOCKER_PROFILE_MUTATION_NAME = "newDockerProfile"
 
-UPDATE_REUSABLE_TOKEN_PROFILE_MUTATION = """mutation updateReusableTokenProfile($profileInput: ReusableTokenProfileUpdateInput!, $id: ID!) {
-                         updateReusableTokenProfile(profileInput: $profileInput, id: $id) 
+UPDATE_DOCKER_PROFILE_MUTATION = """mutation updateDockerProfile($profileInput: DockerProfileInput!, $id: ID!) {
+                         updateDockerProfile(profileInput: $profileInput, id: $id) 
                        }"""
 
 DELETE_PROFILE_MUTATION = """mutation deleteProfile($id: ID!){
@@ -344,6 +343,9 @@ CHECK_ENFORCE_STATUS_QUERY_NAME = "getTask"
 CHECK_ENFORCE_STATUS_RETRIES = 6
 
 SLEEP_AFTER_CHECK_ENFORCE_STATUS = 10
+
+
+
 
 
 def clean_last_token_from_headers():
