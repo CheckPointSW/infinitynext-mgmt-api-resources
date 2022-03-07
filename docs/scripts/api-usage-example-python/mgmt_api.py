@@ -572,7 +572,7 @@ def delete_zone(zone_id):
                         description="Deleting Zone")
     print("Deleting Zone")
 
-def create_reusable_token_profile(profile_input):
+def create_docker_profile(profile_input):
     """
     Executes a "create reusable token profile" mutation with graphql-client
     :param profile_input: the profile input
@@ -582,11 +582,11 @@ def create_reusable_token_profile(profile_input):
         "profileInput": profile_input
     }
 
-    profile_res = perform_infinity_request(query_or_mutation=CREATE_REUSABLE_TOKEN_PROFILE_MUTATION,
+    profile_res = perform_infinity_request(query_or_mutation=CREATE_DOCKER_PROFILE_MUTATION,
                                     version=1,
                                     variables=profile_variables,
-                                    description="Creating Reusable profile")
-    profile_id = profile_res['data'][CREATE_REUSABLE_TOKEN_PROFILE_MUTATION_NAME]['id']
+                                    description="Creating Docker profile")
+    profile_id = profile_res['data'][CREATE_DOCKER_PROFILE_MUTATION_NAME]['id']
     print("Creating reusable profile", profile_res, "\n")
     return profile_id
 
@@ -603,7 +603,7 @@ def update_reusable_token_profile(profile_input, id):
         "id": id
     }
 
-    response = perform_infinity_request(query_or_mutation=UPDATE_REUSABLE_TOKEN_PROFILE_MUTATION,
+    response = perform_infinity_request(query_or_mutation=UPDATE_DOCKER_PROFILE_MUTATION,
                                     version=1,
                                     variables=profile_variables,
                                     description="Updating profile")
